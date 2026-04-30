@@ -8,36 +8,35 @@ use Illuminate\Support\Facades\DB;
 
 class bloglistcontroller extends Controller
 {
+
     function bloglist(Request $request)
     {
-        //return $request->input();
-        $data = new blog();
+        $data = new blog;
         $data->title = $request->title;
         $data->description = $request->description;
         $data->save();
         if ($data) {
-            //echo "Data Added";
             return redirect('list');
         } else {
-            echo "Data Not Added";
+            return "Something went wrong";
         }
     }
 
     function list()
     {
         $data = DB::table("blogs")->get();
-        return view('bloglist', ['data' => $data]);
+        return view("bloglist", ["data" => $data]);
         $data = blogs::all();
         return $data;
     }
-    function deletedata($id)
+
+    function delete($id)
     {
         $isDeleted = blog::destroy($id);
         if ($isDeleted) {
-            echo 'Data Deleted';
-            return redirect('list');
+            return redirect("list");
         } else {
-            echo 'Data Not Deleted';
+            return "Data not Deleted";
         }
     }
 
@@ -47,16 +46,15 @@ class bloglistcontroller extends Controller
         return view('edit', ['data' => $data]);
     }
 
-    function updatedata(Request $request, $id)
+    function update(Request $request, $id)
     {
         $data = blog::find($id);
         $data->title = $request->title;
         $data->description = $request->description;
-        $data->save();
-        if ($data) {
-            return redirect('update');
+        if ($data->save()) {
+            return redirect('list');
         } else {
-            echo 'Data not updated';
+            return 'Data Not Updated';
         }
     }
 }
