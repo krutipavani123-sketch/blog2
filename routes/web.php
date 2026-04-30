@@ -21,11 +21,13 @@ Route::get('delete/{id}', [bloglistcontroller::class, 'delete']);
 Route::get('edit/{id}', [bloglistcontroller::class, 'edit']);
 Route::put('edit/{id}', [bloglistcontroller::class, 'update']);
 
-Route::view('/', 'login');  
-Route::post('', [logincontroller::class, 'login']);
+Route::view('/', 'login');
+Route::post('/', [logincontroller::class, 'login']);
 Route::post('welcome', [bloglistcontroller::class, 'list']);
 
-Route::view('welcome','welcome');
+Route::view('welcome', 'welcome');
+
+Route::get('search', [bloglistcontroller::class,'search']);
 
 //Route::view('welcome', 'welcome');
 

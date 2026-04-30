@@ -3,6 +3,16 @@
 
 @section('main')
 <h1>Blog List</h1>
+
+<form method="get" action="search">
+    <div text-align="right">
+        <input type="text" placeholder="serach with name" name="search" value="{{ @$search }}">
+        <button>Search</button><br><br>
+    </div>
+        
+
+    </form>
+
 <button class="btn btn-info" style="margin-bottom: 20px;"><a href="{{ url('welcome') }}"style="text-decoration: none; color: white;">Add Blog</a></button>
     <table border="1" class="table table-bordered table-sm">
         <tr>

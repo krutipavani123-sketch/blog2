@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\blog;
+use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,5 +57,11 @@ class bloglistcontroller extends Controller
         } else {
             return 'Data Not Updated';
         }
+    }
+
+    function search(Request $request)
+    {
+        $data = blog::where('title', 'like', "%$request->search%")->get();
+        return view("bloglist", ["data" => $data, 'search' => $request->search]);
     }
 }
