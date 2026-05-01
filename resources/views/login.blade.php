@@ -16,13 +16,13 @@
 
     <style>
         .main{
-            text-align: center;
+            text-align: center; 
             margin-top: 100px;
         }
     </style>
 </head>
 <body>
-    <form method="post" action="/welcome">
+    <form method="post" action="/login">
         <div class="main">
             <h1>Login</h1>
             <label>Name</label><br>

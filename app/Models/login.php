@@ -2,11 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// 1. You MUST import this specific class
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class login extends Model
+// 2. Change "extends Model" to "extends Authenticatable"
+class login extends Authenticatable
 {
-    protected $fillable = ['name', 'email', 'password'];
-}
+    use Notifiable;
 
-?>
+    protected $table = 'logins';
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    // Hidden fields for security
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+}
