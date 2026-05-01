@@ -22,10 +22,9 @@
     </style>
 </head>
 <body>
-    <form method="post" action="/login">
-        @csrf
+    <form method="post" action="/register">
         <div class="main">
-            <h1>Login</h1>
+            <h1>Signup</h1>
             <label>Name</label><br>
             <input type="text" name="name"><br>
 
@@ -35,7 +34,7 @@
             <label>Password</label><br>
             <input type="password" name="password"><br><br>
 
-            <button name="btn" type="submit" class="btn btn-primary">Login</button>
+            <button name="btn" type="submit" class="btn btn-primary">Signup</button>
         </div>
     </form>
    

@@ -12,8 +12,9 @@
         
 
     </form>
+<a href="{{ url('add-blog') }}" class="btn btn-info" style="margin-bottom: 20px; color: white; text-decoration: none;">Add Blog</a>
 
-<button class="btn btn-info" style="margin-bottom: 20px;"><a href="{{ url('welcome') }}"style="text-decoration: none; color: white;">Add Blog</a></button>
+
     <table border="1" class="table table-bordered table-sm">
         <tr>
             <td>id</td>

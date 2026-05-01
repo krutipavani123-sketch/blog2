@@ -10,18 +10,38 @@ use Illuminate\Support\Facades\DB;
 class bloglistcontroller extends Controller
 {
 
+    // function bloglist(Request $request)
+    // {
+    //     $data = new blog;
+    //     $data->title = $request->title;
+    //     $data->description = $request->description;
+    //     $data->save();
+    //     if ($data) {
+    //         return redirect('list');
+    //     } else {
+    //         return "Something went wrong";
+    //     }
+    // }
     function bloglist(Request $request)
-    {
-        $data = new blog;
-        $data->title = $request->title;
-        $data->description = $request->description;
-        $data->save();
-        if ($data) {
-            return redirect('list');
-        } else {
-            return "Something went wrong";
-        }
+{
+    $request->validate([
+        'title' => 'required',
+        'description' => 'required'
+    ]);
+
+    $data = new blog;
+    $data->title = $request->title;
+    $data->description = $request->description;
+    $data->save();
+
+    if ($data) {
+        
+        return redirect('welcome')->with('success', 'Blog added successfully!');
+    } else {
+        return "Something went wrong";
     }
+}
+
 
     function list()
     {

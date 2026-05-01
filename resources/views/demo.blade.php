@@ -11,37 +11,34 @@ use App\Mail\loginmail;
 
 class logincontroller extends Controller
 {
-
+  
     public function register(Request $request)
     {
         // Save the user to the database
-        $data = login::create([
+        $user = login::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-
-        Auth::login($data);
-        return redirect('login');
+       
+        Auth::login($user);
+        return redirect('welcome');
     }
 
 
     public function login(Request $request)
     {
-        // 1. Find the user first
-        $data = login::where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
 
-
-        if ($data && Hash::check($request->password, $data->password)) {
-
-            session(['user_id' => $data->id]);
-
-            Mail::to($request->email)->send(new loginmail("You are Login", "Welcome back!"));
-
+        
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+             Mail::to($request->email)->send(new loginmail("You are Login", "You are login in blog management system"));
             return redirect('welcome');
         }
 
-        return redirect('login')->with('error', 'Wrong email or password');
+        // If wrong, go back with error
+        return redirect('/')->with('error', 'Wrong email or password');
     }
 }

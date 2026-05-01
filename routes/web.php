@@ -5,6 +5,33 @@ use App\Http\Controllers\welcomecontroller;
 use App\Http\Controllers\bloglistcontroller;
 use App\Http\Controllers\editcontroller;
 use App\Http\Controllers\logincontroller;
+use App\Http\Controllers\loginmailcontroller;
+
+
+
+
+Route::view('add-blog', 'welcome');
+Route::get('welcome', [bloglistcontroller::class, 'list']);
+Route::post('bloglist', [bloglistcontroller::class, 'bloglist']);
+
+
+Route::view('/', 'register');
+Route::view('login', 'login');
+//  Route::view('welcome','welcome');
+Route::post('register', [logincontroller::class, 'register']);
+
+Route::post('login', [logincontroller::class, 'login']);
+Route::get('welcome', [bloglistcontroller::class, 'list']);
+//Route::post('', [bloglistcontroller::class, '']);
+
+
+
+Route::get('delete/{id}', [bloglistcontroller::class, 'delete']);
+
+Route::get('list', [bloglistcontroller::class, 'list']);
+Route::get('edit/{id}', [bloglistcontroller::class, 'edit']);
+Route::put('edit/{id}', [bloglistcontroller::class, 'update']);
+Route::get('search', [bloglistcontroller::class, 'search']);
 
 
 // Route::get('welcome', function () {
@@ -13,19 +40,17 @@ use App\Http\Controllers\logincontroller;
 
 // To show the form
 
-Route::view('/', 'login');
-Route::post('login', [logincontroller::class, 'login']);
+
+Route::post('mail', [loginmailcontroller::class, 'loginmail']);
+Route::view('send-mail', 'sendmail');
+
+
+//Route::post('login', [logincontroller::class, 'login']);
 
 // To handle the form submission
-Route::post('login', [logincontroller::class, 'login']);
-Route::get('welcome', [bloglistcontroller::class, 'list']);
 
-Route::get('delete/{id}', [bloglistcontroller::class, 'delete']);
 
-Route::get('list', [bloglistcontroller::class, 'list']);
-Route::get('edit/{id}', [bloglistcontroller::class, 'edit']);
-Route::put('edit/{id}', [bloglistcontroller::class, 'update']);
-Route::get('search', [bloglistcontroller::class, 'search']);
+
 
 
 // Route::post('login', [logincontroller::class, 'login']);
